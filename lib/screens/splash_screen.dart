@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:write_it_down/screens/home_screen.dart';
 import '../constants/colors.dart';
 
@@ -12,8 +13,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final String logoWhite = 'assets/ic_logo_white.svg';
-
   @override
   void initState() {
     super.initState();
@@ -28,14 +27,6 @@ class _SplashScreenState extends State<SplashScreen> {
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (BuildContext context) => const HomeScreen())));
 
-    // get splash image asset
-    // not using same as the flutter_native_splash lib
-    // because there 4X image is required and cant change
-    // the size manually, here we can use normal size and
-    // if needed we can use height to adjust
-    var assetsImage = const AssetImage('images/ic_logo_white.png');
-    //create image widget from image asset
-    var splashImage = Image(image: assetsImage);
 
     // ui setup
     return MaterialApp(
@@ -44,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Container(
           decoration: const BoxDecoration(color: appBlack),
           child: Center(
-            child: splashImage,
+            child: SvgPicture.asset('assets/svg/ic_logo_white.svg'),
           ),
         ),
       ),

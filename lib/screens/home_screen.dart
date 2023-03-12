@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/screens/pages/documents_page.dart';
 import 'package:write_it_down/screens/pages/reader_mode_page.dart';
@@ -13,17 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  //image assets
-  var documentImageAsset = const AssetImage('images/ic_folder.png');
-  var documentImageAssetDisabled =
-      const AssetImage('images/ic_folder_disabled.png');
-  var readerModeImageAsset = const AssetImage('images/ic_reader.png');
-  var readerModeImageAssetDisabled =
-      const AssetImage('images/ic_reader_disabled.png');
-  var settingsImageAsset = const AssetImage('images/ic_settings.png');
-  var settingsImageAssetDisabled =
-      const AssetImage('images/ic_settings_disabled.png');
-
   ///PAGES LIST FOR BOTTOM NAV
   List pages = [
     const DocumentPage(),
@@ -46,13 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
         /// APP BAR
         appBar: AppBar(
-          backgroundColor: appBlack,
-          title: const Center(
-            child: Image(
-              image: AssetImage('images/ic_logo_white.png'),
-              width: 80,
-            ),
-          ),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          title: SvgPicture.asset('assets/svg/ic_logo_white.svg'),
         ),
 
         /// BODY BASED ON BOTTOM NAV

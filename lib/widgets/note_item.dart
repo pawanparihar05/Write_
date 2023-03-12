@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:write_it_down/constants/colors.dart';
-
-import '../constants/dimens.dart';
+import 'package:write_it_down/constants/dimens.dart';
 
 class NoteItem extends StatelessWidget {
   //params

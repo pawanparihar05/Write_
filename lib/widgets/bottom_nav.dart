@@ -1,8 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:write_it_down/constants/colors.dart';
+import 'package:write_it_down/constants/dimens.dart';
+import 'package:write_it_down/constants/strings.dart';
 
 class BottomNav extends StatelessWidget {
   //params
+  // ignore: prefer_typing_uninitialized_variables
   final onTap;
   final int selectedPage;
 
@@ -11,17 +15,6 @@ class BottomNav extends StatelessWidget {
     required this.onTap,
     required this.selectedPage,
   }) : super(key: key);
-
-  //image assets
-  final documentImageAsset = const AssetImage('images/ic_folder.png');
-  final documentImageAssetDisabled =
-      const AssetImage('images/ic_folder_disabled.png');
-  final readerModeImageAsset = const AssetImage('images/ic_reader.png');
-  final readerModeImageAssetDisabled =
-      const AssetImage('images/ic_reader_disabled.png');
-  final settingsImageAsset = const AssetImage('images/ic_settings.png');
-  final settingsImageAssetDisabled =
-      const AssetImage('images/ic_settings_disabled.png');
 
   @override
   Widget build(BuildContext context) {
@@ -32,41 +25,50 @@ class BottomNav extends StatelessWidget {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       backgroundColor: bottomNavBgBlack,
-      selectedItemColor: Colors.white,
+      selectedItemColor: appGreen,
       unselectedItemColor: disabledGrey,
       elevation: 5,
       iconSize: 30,
-      items: [
+      items: const [
         BottomNavigationBarItem(
             activeIcon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image(image: documentImageAsset),
+              padding: EdgeInsets.all(bottomNavItemPadding),
+              child: Icon(
+                Icons.note_add,
+                color: appGreen,
+              ),
             ),
             icon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image(image: documentImageAssetDisabled),
+              padding: EdgeInsets.all(bottomNavItemPadding),
+              child: Icon(Icons.note_add),
             ),
-            label: "Documents"),
+            label: notes),
         BottomNavigationBarItem(
             activeIcon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image(image: readerModeImageAsset),
+              padding: EdgeInsets.all(bottomNavItemPadding),
+              child: Icon(
+                Icons.chrome_reader_mode,
+                color: appGreen,
+              ),
             ),
             icon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image(image: readerModeImageAssetDisabled),
+              padding: EdgeInsets.all(bottomNavItemPadding),
+              child: Icon(Icons.chrome_reader_mode),
             ),
-            label: "Reader Mode"),
+            label: readerMode),
         BottomNavigationBarItem(
             activeIcon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image(image: settingsImageAsset),
+              padding: EdgeInsets.all(bottomNavItemPadding),
+              child: Icon(
+                Icons.settings,
+                color: appGreen,
+              ),
             ),
             icon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image(image: settingsImageAssetDisabled),
+              padding: EdgeInsets.all(bottomNavItemPadding),
+              child: Icon(Icons.settings),
             ),
-            label: "Settings"),
+            label: settings),
       ],
     );
   }

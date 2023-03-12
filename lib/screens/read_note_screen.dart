@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:write_it_down/constants/colors.dart';
-import 'package:write_it_down/constants/dimens.dart';
 import 'package:write_it_down/constants/strings.dart';
 
 class ReadNote extends StatefulWidget {
@@ -22,11 +22,12 @@ class _ReadNoteState extends State<ReadNote> {
       /// APP BAR
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: cardBgWhite,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
         leading: GestureDetector(
           onTap: goBack,
           child: const Padding(
-            padding: EdgeInsets.all(appPadding),
+            padding: EdgeInsets.only(left: 10),
             child: Icon(
               Icons.arrow_back_ios,
               color: detailTextGrey,
@@ -35,19 +36,14 @@ class _ReadNoteState extends State<ReadNote> {
         ),
         actions: const [
           Padding(
-            padding: EdgeInsets.all(appPadding),
+            padding: EdgeInsets.only(right: 20),
             child: Icon(
               Icons.ios_share_rounded,
               color: detailTextGrey,
             ),
           ),
         ],
-        title: const Center(
-          child: Image(
-            image: AssetImage('images/ic_logo_grey.png'),
-            width: 80,
-          ),
-        ),
+        title: SvgPicture.asset('assets/svg/ic_logo_grey.svg'),
       ),
 
       /// BODY
