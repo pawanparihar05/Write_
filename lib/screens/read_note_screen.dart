@@ -26,12 +26,9 @@ class _ReadNoteState extends State<ReadNote> {
         centerTitle: true,
         leading: GestureDetector(
           onTap: goBack,
-          child: const Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: detailTextGrey,
-            ),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: detailTextGrey,
           ),
         ),
         actions: const [

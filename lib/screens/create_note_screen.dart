@@ -17,35 +17,10 @@ class _CreateNoteState extends State<CreateNote> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(appPadding),
+    return const Padding(
+      padding: EdgeInsets.all(appPadding),
       child: Scaffold(
         backgroundColor: appBlack,
-
-        /// APP BAR
-        appBar: AppBar(
-          backgroundColor: appBlack,
-          leading: GestureDetector(
-            onTap: goBack,
-            child: const Center(
-              child: Icon(
-                Icons.arrow_back_ios,
-                color: cardBgWhite,
-              ),
-            ),
-          ),
-          actions: const [
-            Center(
-                child: Icon(
-              Icons.save,
-              color: appGreen,
-            )),
-          ],
-          title: const Image(
-            image: AssetImage('images/ic_logo_white.png'),
-            width: 100,
-          ),
-        ),
       ),
     );
   }

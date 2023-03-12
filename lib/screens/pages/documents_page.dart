@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dimens.dart';
-import 'package:write_it_down/screens/read_note_screen.dart';
+import 'package:write_it_down/screens/create_note_screen.dart';
 import 'package:write_it_down/widgets/add_note_item.dart';
 import 'package:write_it_down/widgets/note_item.dart';
 
@@ -30,7 +30,8 @@ class _DocumentPageState extends State<DocumentPage> {
         date: "21 June, 2017",
         title: "The Mothering Blackness",
         numberOfPages: 1),
-    const NoteItem(date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
+    const NoteItem(
+        date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
     const NoteItem(
         date: "02 April, 2019",
         title: "Song for the Old Ones",
@@ -45,7 +46,8 @@ class _DocumentPageState extends State<DocumentPage> {
         date: "21 June, 2017",
         title: "The Mothering Blackness",
         numberOfPages: 1),
-    const NoteItem(date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
+    const NoteItem(
+        date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
   ];
 
   /// ON GRID ITEM CLICKED
@@ -53,7 +55,7 @@ class _DocumentPageState extends State<DocumentPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const ReadNote(),
+        builder: (context) => const CreateNote(),
       ),
     );
   }

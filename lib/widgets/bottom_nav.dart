@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dimens.dart';
@@ -34,39 +33,48 @@ class BottomNav extends StatelessWidget {
             activeIcon: Padding(
               padding: EdgeInsets.all(bottomNavItemPadding),
               child: Icon(
-                Icons.note_add,
+                Icons.note_add_rounded,
                 color: appGreen,
               ),
             ),
             icon: Padding(
               padding: EdgeInsets.all(bottomNavItemPadding),
-              child: Icon(Icons.note_add),
+              child: Icon(
+                Icons.note_add_rounded,
+                color: disabledGrey,
+              ),
             ),
             label: notes),
         BottomNavigationBarItem(
             activeIcon: Padding(
               padding: EdgeInsets.all(bottomNavItemPadding),
               child: Icon(
-                Icons.chrome_reader_mode,
+                Icons.chrome_reader_mode_rounded,
                 color: appGreen,
               ),
             ),
             icon: Padding(
               padding: EdgeInsets.all(bottomNavItemPadding),
-              child: Icon(Icons.chrome_reader_mode),
+              child: Icon(
+                Icons.chrome_reader_mode_rounded,
+                color: disabledGrey,
+              ),
             ),
             label: readerMode),
         BottomNavigationBarItem(
             activeIcon: Padding(
               padding: EdgeInsets.all(bottomNavItemPadding),
               child: Icon(
-                Icons.settings,
+                Icons.settings_rounded,
                 color: appGreen,
               ),
             ),
             icon: Padding(
               padding: EdgeInsets.all(bottomNavItemPadding),
-              child: Icon(Icons.settings),
+              child: Icon(
+                Icons.settings_rounded,
+                color: disabledGrey,
+              ),
             ),
             label: settings),
       ],

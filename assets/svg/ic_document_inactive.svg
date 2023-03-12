@@ -1,8 +1,0 @@
-<svg width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path opacity="0.35"
-        d="M24 22H2C0.895 22 0 21.105 0 20V8C0 7.448 0.448 7 1 7H25C25.552 7 26 7.448 26 8V20C26 21.105 25.105 22 24 22Z"
-        fill="white" />
-    <path opacity="0.35" fill-rule="evenodd" clip-rule="evenodd"
-        d="M6.868 0H2C0.895 0 0 0.895 0 2V5H11H26V4C26 2.895 25.105 2 24 2H9.2003L8.583 0.971C8.222 0.369 7.571 0 6.868 0Z"
-        fill="white" />
-</svg>
