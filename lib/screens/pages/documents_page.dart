@@ -11,7 +11,7 @@ class DocumentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(appPadding),
+        padding: const EdgeInsets.symmetric(horizontal: appPadding),
         child: Expanded(
           child: Column(
             children: [
@@ -37,6 +37,7 @@ class DocumentPage extends StatelessWidget {
               const SizedBox(height: 15),
               Expanded(
                 child: GridView.count(
+                  physics: const BouncingScrollPhysics(),
                   primary: false,
                   crossAxisSpacing: 10.0,
                   mainAxisSpacing: 10.0,
@@ -44,6 +45,26 @@ class DocumentPage extends StatelessWidget {
                   childAspectRatio: 0.9,
                   children: const [
                     AddNoteItem(),
+                    NoteItem(
+                        date: "02 April, 2019",
+                        title: "Song for the Old Ones",
+                        numberOfPages: 4),
+                    NoteItem(
+                        date: "19 March, 2019",
+                        title: "Awaking in New York",
+                        numberOfPages: 1),
+                    NoteItem(
+                        date: "03 August, 2018",
+                        title: "The Heart of a Woman ",
+                        numberOfPages: 3),
+                    NoteItem(
+                        date: "21 June, 2017",
+                        title: "The Mothering Blackness",
+                        numberOfPages: 1),
+                    NoteItem(
+                        date: "12 June, 2017",
+                        title: "Mom & Me & Mom",
+                        numberOfPages: 2),
                     NoteItem(
                         date: "02 April, 2019",
                         title: "Song for the Old Ones",

@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // because there 4X image is required and cant change
     // the size manually, here we can use normal size and
     // if needed we can use height to adjust
-    var assetsImage = const AssetImage('images/ic_logo.png');
+    var assetsImage = const AssetImage('images/ic_logo_white.png');
     //create image widget from image asset
     var splashImage = Image(image: assetsImage);
 

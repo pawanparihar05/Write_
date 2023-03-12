@@ -2,54 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dimens.dart';
 
-class CreateNote extends StatelessWidget {
+class CreateNote extends StatefulWidget {
   const CreateNote({Key? key}) : super(key: key);
 
   @override
+  State<CreateNote> createState() => _CreateNoteState();
+}
+
+class _CreateNoteState extends State<CreateNote> {
+  /// ON BACK CLICK
+  void goBack() {
+    Navigator.pop(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      color: cardBgWhite,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius)),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Text(
-            //   date,
-            //   maxLines: 1,
-            //   overflow: TextOverflow.ellipsis,
-            //   textAlign: TextAlign.center,
-            //   style: const TextStyle(
-            //     color: detailTextGrey,
-            //     fontSize: 14,
-            //     fontFamily: "SfUiDisplay",
-            //   ),
-            // ),
-            // Text(
-            //   title,
-            //   textAlign: TextAlign.center,
-            //   maxLines: 2,
-            //   overflow: TextOverflow.ellipsis,
-            //   style: const TextStyle(
-            //       color: appBlack,
-            //       fontSize: 22,
-            //       fontWeight: FontWeight.w700,
-            //       fontFamily: "playfair"),
-            // ),
-            // Text(
-            //   "$numberOfPages Pages",
-            //   maxLines: 1,
-            //   overflow: TextOverflow.ellipsis,
-            //   textAlign: TextAlign.center,
-            //   style: const TextStyle(
-            //     color: detailTextGrey,
-            //     fontSize: 14,
-            //     fontFamily: "SfUiDisplay",
-            //   ),
-            // ),
+    return Padding(
+      padding: const EdgeInsets.all(appPadding),
+      child: Scaffold(
+        backgroundColor: appBlack,
+
+        /// APP BAR
+        appBar: AppBar(
+          backgroundColor: appBlack,
+          leading: GestureDetector(
+            onTap: goBack,
+            child: const Center(
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: cardBgWhite,
+              ),
+            ),
+          ),
+          actions: const [
+            Center(
+                child: Icon(
+              Icons.save,
+              color: appGreen,
+            )),
           ],
+          title: const Image(
+            image: AssetImage('images/ic_logo_white.png'),
+            width: 100,
+          ),
         ),
       ),
     );

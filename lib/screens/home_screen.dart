@@ -44,12 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: appBlack,
 
-        ///APP BAR
+        /// APP BAR
         appBar: AppBar(
           backgroundColor: appBlack,
-          title: const Image(
-            image: AssetImage('images/ic_logo.png'),
-            width: 100,
+          title: Center(
+            child: const Image(
+              image: AssetImage('images/ic_logo_white.png'),
+              width: 80,
+            ),
           ),
         ),
 

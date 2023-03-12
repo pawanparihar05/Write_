@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dimens.dart';
-import 'package:write_it_down/screens/create_note_screen.dart';
+import 'package:write_it_down/screens/read_note_screen.dart';
 import 'package:write_it_down/widgets/note_item.dart';
 
 class ReaderModePage extends StatefulWidget {
@@ -32,12 +32,39 @@ class _ReaderModePageState extends State<ReaderModePage> {
         numberOfPages: 1),
     const NoteItem(
         date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
+    const NoteItem(
+        date: "02 April, 2019",
+        title: "Song for the Old Ones",
+        numberOfPages: 4),
+    const NoteItem(
+        date: "02 October, 2017", title: "Phenomenal Woman", numberOfPages: 6),
+    const NoteItem(
+        date: "19 March, 2019", title: "Awaking in New York", numberOfPages: 1),
+    const NoteItem(
+        date: "03 August, 2018",
+        title: "The Heart of a Woman ",
+        numberOfPages: 3),
+    const NoteItem(
+        date: "21 June, 2017",
+        title: "The Mothering Blackness",
+        numberOfPages: 1),
+    const NoteItem(
+        date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
   ];
 
   /// ON GRID ITEM CLICKED
   void onItemClicked() {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (BuildContext context) => const CreateNote()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ReadNote(),
+      ),
+    );
+
+    // THIS IS TO POP ALL AND GO TO NEW DESTINATION
+    // LEFT HERE FOR REF
+    // Navigator.of(context).pushReplacement(MaterialPageRoute(
+    //     builder: (BuildContext context) => const CreateNote()));
   }
 
   /// UI BUILDER
@@ -45,7 +72,7 @@ class _ReaderModePageState extends State<ReaderModePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(appPadding),
+        padding: const EdgeInsets.symmetric(horizontal: appPadding),
         child: Expanded(
           child: Column(
             children: [
@@ -71,6 +98,7 @@ class _ReaderModePageState extends State<ReaderModePage> {
               const SizedBox(height: 15),
               Expanded(
                 child: GridView.builder(
+                  physics: const BouncingScrollPhysics(),
                   primary: false,
                   padding: const EdgeInsets.all(0.0),
                   itemCount: notesList.length,
