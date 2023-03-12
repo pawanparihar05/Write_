@@ -26,9 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   ///PAGES LIST FOR BOTTOM NAV
   List pages = [
-    DocumentPage(),
-    ReaderModePage(),
-    SettingsPage(),
+    const DocumentPage(),
+    const ReaderModePage(),
+    const SettingsPage(),
   ];
 
   int selectedPage = 0;
@@ -47,8 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
         /// APP BAR
         appBar: AppBar(
           backgroundColor: appBlack,
-          title: Center(
-            child: const Image(
+          title: const Center(
+            child: Image(
               image: AssetImage('images/ic_logo_white.png'),
               width: 80,
             ),
