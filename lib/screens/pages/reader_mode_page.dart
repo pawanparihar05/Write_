@@ -100,7 +100,6 @@ class _ReaderModePageState extends State<ReaderModePage> {
                 child: GridView.builder(
                   physics: const BouncingScrollPhysics(),
                   primary: false,
-                  padding: const EdgeInsets.all(0.0),
                   itemCount: notesList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
