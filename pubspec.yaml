@@ -101,11 +101,11 @@ flutter:
       fonts:
         - asset: fonts/playfair/playfair_regular.ttf
           weight: 400
-        - asset: fonts/sf_ui_display/playfair_medium.ttf
+        - asset: fonts/playfair/playfair_medium.ttf
           weight: 500
-        - asset: fonts/sf_ui_display/playfair_semibold.ttf
+        - asset: fonts/playfair/playfair_semibold.ttf
           weight: 600
-        - asset: fonts/sf_ui_display/playfair_bold.ttf
+        - asset: fonts/playfair/playfair_bold.ttf
           weight: 700
 
   #       - asset: fonts/Schyler-Italic.ttf
