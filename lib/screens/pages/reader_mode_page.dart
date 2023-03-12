@@ -1,11 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dimens.dart';
+import 'package:write_it_down/screens/create_note_screen.dart';
 import 'package:write_it_down/widgets/note_item.dart';
 
-class ReaderModePage extends StatelessWidget {
+class ReaderModePage extends StatefulWidget {
   const ReaderModePage({Key? key}) : super(key: key);
 
+  @override
+  State<ReaderModePage> createState() => _ReaderModePageState();
+}
+
+/// CONSTRUCTOR
+class _ReaderModePageState extends State<ReaderModePage> {
+  final List notesList = [
+    const NoteItem(
+        date: "02 April, 2019",
+        title: "Song for the Old Ones",
+        numberOfPages: 4),
+    const NoteItem(
+        date: "02 October, 2017", title: "Phenomenal Woman", numberOfPages: 6),
+    const NoteItem(
+        date: "19 March, 2019", title: "Awaking in New York", numberOfPages: 1),
+    const NoteItem(
+        date: "03 August, 2018",
+        title: "The Heart of a Woman ",
+        numberOfPages: 3),
+    const NoteItem(
+        date: "21 June, 2017",
+        title: "The Mothering Blackness",
+        numberOfPages: 1),
+    const NoteItem(
+        date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
+  ];
+
+  /// ON GRID ITEM CLICKED
+  void onItemClicked() {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (BuildContext context) => const CreateNote()));
+  }
+
+  /// UI BUILDER
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,39 +70,22 @@ class ReaderModePage extends StatelessWidget {
               /// CARD GRID
               const SizedBox(height: 15),
               Expanded(
-                child: GridView.count(
+                child: GridView.builder(
                   primary: false,
                   padding: const EdgeInsets.all(0.0),
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.9,
-                  children: const [
-                    NoteItem(
-                        date: "02 April, 2019",
-                        title: "Song for the Old Ones",
-                        numberOfPages: 4),
-                    NoteItem(
-                        date: "02 October, 2017",
-                        title: "Phenomenal Woman",
-                        numberOfPages: 6),
-                    NoteItem(
-                        date: "19 March, 2019",
-                        title: "Awaking in New York",
-                        numberOfPages: 1),
-                    NoteItem(
-                        date: "03 August, 2018",
-                        title: "The Heart of a Woman ",
-                        numberOfPages: 3),
-                    NoteItem(
-                        date: "21 June, 2017",
-                        title: "The Mothering Blackness",
-                        numberOfPages: 1),
-                    NoteItem(
-                        date: "12 June, 2017",
-                        title: "Mom & Me & Mom",
-                        numberOfPages: 2),
-                  ],
+                  itemCount: notesList.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
+                    childAspectRatio: 0.9,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: onItemClicked, // custom item click
+                      child: notesList[index], // item list
+                    );
+                  },
                 ),
               ),
             ],
@@ -75,6 +93,5 @@ class ReaderModePage extends StatelessWidget {
         ),
       ),
     );
-
   }
 }

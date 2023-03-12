@@ -38,7 +38,6 @@ class DocumentPage extends StatelessWidget {
               Expanded(
                 child: GridView.count(
                   primary: false,
-                  padding: const EdgeInsets.all(0.0),
                   crossAxisSpacing: 10.0,
                   mainAxisSpacing: 10.0,
                   crossAxisCount: 2,
