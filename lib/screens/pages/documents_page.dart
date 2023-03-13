@@ -17,38 +17,50 @@ class DocumentPage extends StatefulWidget {
 /// CONSTRUCTOR
 class _DocumentPageState extends State<DocumentPage> {
   List<Map<String, dynamic>> _notesList = [];
-  bool _isLoading = true;
 
   /// APP INIT STATE (onCreate)
   @override
   void initState() {
     super.initState();
-    _fetchNotes();
+    //fetch notes from db
+    fetchNotes();
   }
 
   /// FETCH ALL NOTES FROM DB
-  void _fetchNotes() async {
+  void fetchNotes() async {
     final data = await SQLHelper.getAllNotes();
     setState(() {
       _notesList = data;
-      _isLoading = false;
     });
   }
 
   /// ON GRID ITEM CLICKED
-  void _onItemClicked(int index) {
-    // if 0 item -> create note type without any data passing
-    if (index == 0) {
+  void onItemClicked(bool isNewNote, int noteIndex) {
+    // new note
+    if (isNewNote) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const CreateNote(),
+          builder: (context) => const CreateNote(
+            isNewNote: false,
+            title: "",
+            body: "",
+          ),
         ),
       );
     }
     //go to edit note with note item
     else {
-
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CreateNote(
+            isNewNote: false,
+            title: _notesList[noteIndex][fieldNoteTitle],
+            body: _notesList[noteIndex][fieldNoteBody],
+          ),
+        ),
+      );
     }
   }
 
@@ -81,6 +93,13 @@ class _DocumentPageState extends State<DocumentPage> {
 
               /// CARD GRID
               const SizedBox(height: 15),
+
+              ///todo temp remove and put properly
+              GestureDetector(
+                  onTap: () {
+                    onItemClicked(true, 0);
+                  }, // custom item click
+                  child: const AddNoteItem()),
               Expanded(
                 child: GridView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -95,7 +114,7 @@ class _DocumentPageState extends State<DocumentPage> {
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        _onItemClicked(index);
+                        onItemClicked(false, index);
                       }, // custom item click
                       child: NoteItem(
                         date: _notesList[index][fieldNoteCreatedAt],

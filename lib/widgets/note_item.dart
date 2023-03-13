@@ -3,11 +3,11 @@ import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dimens.dart';
 
 class NoteItem extends StatelessWidget {
-  //params
+  /// PARAMS
   final String date, title;
   final int numberOfPages;
 
-  //constructor
+  /// CONSTRUCTOR
   const NoteItem(
       {Key? key,
       required this.date,

@@ -1,23 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:write_it_down/SQLHelper.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dimens.dart';
 
 class CreateNote extends StatefulWidget {
-  const CreateNote({Key? key}) : super(key: key);
+  /// PARAMS
+  final String title, body;
+  final bool isNewNote;
+
+  /// CONSTRUCTOR
+  const CreateNote(
+      {Key? key,
+      required this.isNewNote,
+      required this.body,
+      required this.title})
+      : super(key: key);
 
   @override
   State<CreateNote> createState() => _CreateNoteState();
 }
 
 class _CreateNoteState extends State<CreateNote> {
-  /// ON BACK CLICK
-  void goBack() {
-    Navigator.pop(context);
-  }
-
+  /// UI BUILDER
   @override
   Widget build(BuildContext context) {
+    /// TEXT CONTROLLERS
+    final TextEditingController noteTitleController = TextEditingController();
+    final TextEditingController noteBodyController = TextEditingController();
+
+    /// CREATE NEW NOTE IN DB
+    Future<void> insertNote() async {
+      if (noteTitleController.text.isEmpty && noteBodyController.text.isEmpty) {
+        //title and body both empty, don't save
+      }
+      //only if either title or body is not empty
+      else {
+        await SQLHelper.createNote(
+            noteTitleController.text, noteBodyController.text);
+      }
+    }
+
+    /// ON BACK CLICK
+    void goBack() {
+      insertNote();
+      Navigator.pop(context);
+    }
+
     return Scaffold(
       backgroundColor: appBlack,
 
@@ -74,20 +103,21 @@ class _CreateNoteState extends State<CreateNote> {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                SizedBox(height: 10),
+              children: [
+                const SizedBox(height: 10),
                 TextField(
                   keyboardType: TextInputType.text,
                   maxLines: null,
                   minLines: null,
                   textAlign: TextAlign.start,
                   cursorColor: appBlack,
-                  style: TextStyle(
+                  controller: noteTitleController,
+                  style: const TextStyle(
                       color: appBlack,
                       fontSize: 26,
                       fontWeight: FontWeight.w700,
                       fontFamily: "playfair"),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: InputBorder.none,
                       filled: true,
                       fillColor: Colors.transparent,
@@ -98,16 +128,17 @@ class _CreateNoteState extends State<CreateNote> {
                   flex: 1,
                   child: TextField(
                     keyboardType: TextInputType.multiline,
-                    scrollPhysics: BouncingScrollPhysics(),
+                    scrollPhysics: const BouncingScrollPhysics(),
                     maxLines: 1000000,
+                    controller: noteBodyController,
                     textAlign: TextAlign.start,
                     cursorColor: appBlack,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: appBlack,
                         fontSize: 19,
                         fontWeight: FontWeight.w400,
                         fontFamily: "SFUiDisplay"),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: InputBorder.none,
                         filled: true,
                         fillColor: Colors.white,
