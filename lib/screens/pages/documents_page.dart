@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:write_it_down/SQLHelper.dart';
 import 'package:write_it_down/constants/colors.dart';
+import 'package:write_it_down/constants/dbConstants.dart';
 import 'package:write_it_down/constants/dimens.dart';
 import 'package:write_it_down/screens/create_note_screen.dart';
 import 'package:write_it_down/widgets/add_note_item.dart';
@@ -14,50 +16,40 @@ class DocumentPage extends StatefulWidget {
 
 /// CONSTRUCTOR
 class _DocumentPageState extends State<DocumentPage> {
-  final List documentsNotesList = [
-    const AddNoteItem(),
-    const NoteItem(
-        date: "02 April, 2019",
-        title: "Song for the Old Ones",
-        numberOfPages: 4),
-    const NoteItem(
-        date: "19 March, 2019", title: "Awaking in New York", numberOfPages: 1),
-    const NoteItem(
-        date: "03 August, 2018",
-        title: "The Heart of a Woman ",
-        numberOfPages: 3),
-    const NoteItem(
-        date: "21 June, 2017",
-        title: "The Mothering Blackness",
-        numberOfPages: 1),
-    const NoteItem(
-        date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
-    const NoteItem(
-        date: "02 April, 2019",
-        title: "Song for the Old Ones",
-        numberOfPages: 4),
-    const NoteItem(
-        date: "19 March, 2019", title: "Awaking in New York", numberOfPages: 1),
-    const NoteItem(
-        date: "03 August, 2018",
-        title: "The Heart of a Woman ",
-        numberOfPages: 3),
-    const NoteItem(
-        date: "21 June, 2017",
-        title: "The Mothering Blackness",
-        numberOfPages: 1),
-    const NoteItem(
-        date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
-  ];
+  List<Map<String, dynamic>> _notesList = [];
+  bool _isLoading = true;
+
+  /// APP INIT STATE (onCreate)
+  @override
+  void initState() {
+    super.initState();
+    _fetchNotes();
+  }
+
+  /// FETCH ALL NOTES FROM DB
+  void _fetchNotes() async {
+    final data = await SQLHelper.getAllNotes();
+    setState(() {
+      _notesList = data;
+      _isLoading = false;
+    });
+  }
 
   /// ON GRID ITEM CLICKED
-  void onItemClicked() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const CreateNote(),
-      ),
-    );
+  void _onItemClicked(int index) {
+    // if 0 item -> create note type without any data passing
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CreateNote(),
+        ),
+      );
+    }
+    //go to edit note with note item
+    else {
+
+    }
   }
 
   /// UI BUILDER
@@ -93,7 +85,7 @@ class _DocumentPageState extends State<DocumentPage> {
                 child: GridView.builder(
                   physics: const BouncingScrollPhysics(),
                   primary: false,
-                  itemCount: documentsNotesList.length,
+                  itemCount: _notesList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
@@ -102,8 +94,14 @@ class _DocumentPageState extends State<DocumentPage> {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
-                      onTap: onItemClicked, // custom item click
-                      child: documentsNotesList[index], // item list
+                      onTap: () {
+                        _onItemClicked(index);
+                      }, // custom item click
+                      child: NoteItem(
+                        date: _notesList[index][fieldNoteCreatedAt],
+                        title: _notesList[index][fieldNoteTitle],
+                        numberOfPages: 1,
+                      ), // item list
                     );
                   },
                 ),
