@@ -26,7 +26,7 @@ class _ReadNoteState extends State<ReadNote> {
         toolbarHeight: toolbarHeight,
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        leadingWidth: 60,
+        leadingWidth: toolbarLeftIconStartPadding,
         leading: GestureDetector(
           onTap: goBack,
           child: const Icon(
@@ -36,10 +36,10 @@ class _ReadNoteState extends State<ReadNote> {
         ),
         actions: const [
           Padding(
-            padding: EdgeInsets.only(right: 20),
+            padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
             child: Icon(
               Icons.ios_share_rounded,
-              color: detailTextGrey,
+              color: appGreen,
             ),
           ),
         ],
@@ -48,7 +48,7 @@ class _ReadNoteState extends State<ReadNote> {
 
       /// BODY
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -65,18 +65,18 @@ class _ReadNoteState extends State<ReadNote> {
                   fontFamily: "playfair"),
             ),
             const SizedBox(height: 5),
-            const Text(
-              "by Maya Angelou",
-              maxLines: 1,
-              textAlign: TextAlign.start,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  color: appBlack,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: "playfair"),
-            ),
-            const SizedBox(height: 20),
+            // const Text(
+            //   "by Maya Angelou",
+            //   maxLines: 1,
+            //   textAlign: TextAlign.start,
+            //   overflow: TextOverflow.ellipsis,
+            //   style: TextStyle(
+            //       color: appBlack,
+            //       fontSize: 18,
+            //       fontWeight: FontWeight.w400,
+            //       fontFamily: "playfair"),
+            // ),
+            const SizedBox(height: 10),
             Expanded(
               flex: 1,
 

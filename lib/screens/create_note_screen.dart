@@ -24,9 +24,10 @@ class _CreateNoteState extends State<CreateNote> {
       /// APP BAR
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: appBlack,
+        toolbarHeight: toolbarHeight,
         centerTitle: true,
-        leadingWidth: 40,
+        backgroundColor: appBlack,
+        leadingWidth: toolbarLeftIconStartPadding,
         leading: GestureDetector(
           onTap: goBack,
           child: const Icon(
@@ -36,7 +37,7 @@ class _CreateNoteState extends State<CreateNote> {
         ),
         actions: const [
           Padding(
-            padding: EdgeInsets.only(right: 10),
+            padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
             child: Icon(
               Icons.save_rounded,
               color: appGreen,
@@ -58,7 +59,7 @@ class _CreateNoteState extends State<CreateNote> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: const [
