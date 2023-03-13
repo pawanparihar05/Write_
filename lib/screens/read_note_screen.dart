@@ -24,6 +24,7 @@ class _ReadNoteState extends State<ReadNote> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,
+        leadingWidth: 60,
         leading: GestureDetector(
           onTap: goBack,
           child: const Icon(
