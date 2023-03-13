@@ -27,20 +27,32 @@ class _CreateNoteState extends State<CreateNote> {
         toolbarHeight: toolbarHeight,
         centerTitle: true,
         backgroundColor: appBlack,
-        leadingWidth: toolbarLeftIconStartPadding,
+        leadingWidth: 60,
         leading: GestureDetector(
           onTap: goBack,
-          child: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.white,
+          child: const Center(
+            child: Text(
+              "Save",
+              style: TextStyle(
+                  color: appGreen,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "SFUiDisplay"),
+            ),
           ),
         ),
         actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
-            child: Icon(
-              Icons.save_rounded,
-              color: appGreen,
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
+              child: Text(
+                "Share",
+                style: TextStyle(
+                    color: hintGrey,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "SFUiDisplay"),
+              ),
             ),
           ),
         ],
@@ -63,7 +75,7 @@ class _CreateNoteState extends State<CreateNote> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: const [
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 TextField(
                   keyboardType: TextInputType.text,
                   maxLines: null,

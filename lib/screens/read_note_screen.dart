@@ -26,7 +26,7 @@ class _ReadNoteState extends State<ReadNote> {
         toolbarHeight: toolbarHeight,
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        leadingWidth: toolbarLeftIconStartPadding,
+        leadingWidth: 40,
         leading: GestureDetector(
           onTap: goBack,
           child: const Icon(
@@ -39,7 +39,7 @@ class _ReadNoteState extends State<ReadNote> {
             padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
             child: Icon(
               Icons.ios_share_rounded,
-              color: appGreen,
+              color: detailTextGrey,
             ),
           ),
         ],
@@ -52,7 +52,7 @@ class _ReadNoteState extends State<ReadNote> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             const Text(
               "Song for the Old Ones",
               textAlign: TextAlign.start,
