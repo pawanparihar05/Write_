@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:write_it_down/constants/colors.dart';
+import 'package:write_it_down/constants/dimens.dart';
 import 'package:write_it_down/screens/pages/documents_page.dart';
 import 'package:write_it_down/screens/pages/reader_mode_page.dart';
 import 'package:write_it_down/screens/pages/settings_page.dart';
@@ -36,8 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
         /// APP BAR
         appBar: AppBar(
-          centerTitle: true,
           elevation: 0,
+          toolbarHeight: toolbarHeight,
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           title: SvgPicture.asset('assets/svg/ic_logo_white.svg'),
         ),

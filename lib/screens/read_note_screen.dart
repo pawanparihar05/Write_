@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:write_it_down/constants/colors.dart';
+import 'package:write_it_down/constants/dimens.dart';
 import 'package:write_it_down/constants/strings.dart';
 
 class ReadNote extends StatefulWidget {
@@ -22,8 +23,9 @@ class _ReadNoteState extends State<ReadNote> {
       /// APP BAR
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        toolbarHeight: toolbarHeight,
         centerTitle: true,
+        backgroundColor: Colors.transparent,
         leadingWidth: 60,
         leading: GestureDetector(
           onTap: goBack,
