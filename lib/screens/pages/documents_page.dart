@@ -16,7 +16,7 @@ class DocumentPage extends StatefulWidget {
 
 /// CONSTRUCTOR
 class _DocumentPageState extends State<DocumentPage> {
-  List<Map<String, dynamic>> _notesList = [];
+  List<Map<String, dynamic>> fetchedNotesList = [];
 
   /// APP INIT STATE (onCreate)
   @override
@@ -30,38 +30,38 @@ class _DocumentPageState extends State<DocumentPage> {
   void fetchNotes() async {
     final data = await SQLHelper.getAllNotes();
     setState(() {
-      _notesList = data;
+      fetchedNotesList = data;
     });
   }
 
-  /// ON GRID ITEM CLICKED
-  void onItemClicked(bool isNewNote, int noteIndex) {
-    // new note
-    if (isNewNote) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const CreateNote(
-            isNewNote: false,
-            title: "",
-            body: "",
-          ),
+  /// ADD NOTE CLICK
+  void handleAddNote() {
+    // go to create note screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CreateNote(
+          isNewNote: true,
+          title: "",
+          body: "",
         ),
-      );
-    }
+      ),
+    );
+  }
+
+  /// EDIT NOTE CLICK
+  void handleEditNote(int noteIndex) {
     //go to edit note with note item
-    else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CreateNote(
-            isNewNote: false,
-            title: _notesList[noteIndex][fieldNoteTitle],
-            body: _notesList[noteIndex][fieldNoteBody],
-          ),
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CreateNote(
+          isNewNote: false,
+          title: fetchedNotesList[noteIndex][fieldNoteTitle],
+          body: fetchedNotesList[noteIndex][fieldNoteBody],
         ),
-      );
-    }
+      ),
+    );
   }
 
   /// UI BUILDER
@@ -93,18 +93,12 @@ class _DocumentPageState extends State<DocumentPage> {
 
               /// CARD GRID
               const SizedBox(height: 15),
-
-              ///todo temp remove and put properly
-              GestureDetector(
-                  onTap: () {
-                    onItemClicked(true, 0);
-                  }, // custom item click
-                  child: const AddNoteItem()),
               Expanded(
                 child: GridView.builder(
                   physics: const BouncingScrollPhysics(),
                   primary: false,
-                  itemCount: _notesList.length,
+                  itemCount: fetchedNotesList.length + 1,
+                  // to make room for AddNote()
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
@@ -112,15 +106,28 @@ class _DocumentPageState extends State<DocumentPage> {
                     childAspectRatio: 0.9,
                   ),
                   itemBuilder: (BuildContext context, int index) {
+                    // add first item as AddNoteItem()
+                    if (index == 0) {
+                      return GestureDetector(
+                          //on new note click
+                          onTap: () {
+                            handleAddNote();
+                          },
+                          child: const AddNoteItem());
+                    }
+                    //correct the notes list
+                    final Map<String, dynamic> correctedNotesList =
+                        fetchedNotesList[index - 1];
                     return GestureDetector(
                       onTap: () {
-                        onItemClicked(false, index);
-                      }, // custom item click
+                        //edit note click
+                        handleEditNote(index);
+                      },
                       child: NoteItem(
-                        date: _notesList[index][fieldNoteCreatedAt],
-                        title: _notesList[index][fieldNoteTitle],
+                        date: correctedNotesList[fieldNoteCreatedAt],
+                        title: correctedNotesList[fieldNoteTitle],
                         numberOfPages: 1,
-                      ), // item list
+                      ),
                     );
                   },
                 ),
