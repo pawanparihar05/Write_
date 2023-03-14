@@ -44,21 +44,23 @@ class _DocumentPageState extends State<DocumentPage> {
           isNewNote: true,
           title: "",
           body: "",
+          noteID: 0,
         ),
       ),
     );
   }
 
   /// EDIT NOTE CLICK
-  void handleEditNote(int noteIndex) {
+  void handleEditNote(int noteID, String title, String body) {
     //go to edit note with note item
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => CreateNote(
           isNewNote: false,
-          title: fetchedNotesList[noteIndex][fieldNoteTitle],
-          body: fetchedNotesList[noteIndex][fieldNoteBody],
+          noteID: noteID,
+          title: title,
+          body: body,
         ),
       ),
     );
@@ -116,16 +118,19 @@ class _DocumentPageState extends State<DocumentPage> {
                           child: const AddNoteItem());
                     }
                     //correct the notes list
-                    final Map<String, dynamic> correctedNotesList =
+                    final Map<String, dynamic> correctedIndexNote =
                         fetchedNotesList[index - 1];
                     return GestureDetector(
                       onTap: () {
                         //edit note click
-                        handleEditNote(index);
+                        handleEditNote(
+                            correctedIndexNote[fieldNoteID],
+                            correctedIndexNote[fieldNoteTitle],
+                            correctedIndexNote[fieldNoteBody]);
                       },
                       child: NoteItem(
-                        date: correctedNotesList[fieldNoteCreatedAt],
-                        title: correctedNotesList[fieldNoteTitle],
+                        date: correctedIndexNote[fieldNoteCreatedAt],
+                        title: correctedIndexNote[fieldNoteTitle],
                         numberOfPages: 1,
                       ),
                     );

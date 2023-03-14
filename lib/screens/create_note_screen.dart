@@ -6,6 +6,7 @@ import 'package:write_it_down/constants/dimens.dart';
 
 class CreateNote extends StatefulWidget {
   /// PARAMS
+  final int noteID;
   final String title, body;
   final bool isNewNote;
 
@@ -13,8 +14,9 @@ class CreateNote extends StatefulWidget {
   const CreateNote(
       {Key? key,
       required this.isNewNote,
-      required this.body,
-      required this.title})
+      required this.noteID,
+      required this.title,
+      required this.body})
       : super(key: key);
 
   @override
@@ -29,6 +31,12 @@ class _CreateNoteState extends State<CreateNote> {
     final TextEditingController noteTitleController = TextEditingController();
     final TextEditingController noteBodyController = TextEditingController();
 
+    // populate fields if edit note
+    if (!widget.isNewNote) {
+      noteTitleController.text = widget.title;
+      noteBodyController.text = widget.body;
+    }
+
     /// CREATE NEW NOTE IN DB
     Future<void> insertNote() async {
       if (noteTitleController.text.isEmpty && noteBodyController.text.isEmpty) {
@@ -41,9 +49,28 @@ class _CreateNoteState extends State<CreateNote> {
       }
     }
 
+    /// UPDATE NOTE IN DB
+    Future<void> updateNote(int noteID, String title, String body) async {
+      if (noteTitleController.text.isEmpty && noteBodyController.text.isEmpty) {
+        //title and body both empty, don't update
+      }
+      //only if either title or body is not empty
+      else {
+        await SQLHelper.updateNote(
+            noteID, noteTitleController.text, noteBodyController.text);
+      }
+    }
+
     /// ON BACK CLICK
     void goBack() {
-      insertNote();
+      //if new note, add in db
+      if (widget.isNewNote) {
+        insertNote();
+      }
+      //if editing, update in db
+      else {
+        updateNote(widget.noteID, widget.title, widget.body);
+      }
       Navigator.pop(context);
     }
 
@@ -112,6 +139,7 @@ class _CreateNoteState extends State<CreateNote> {
                   textAlign: TextAlign.start,
                   cursorColor: appBlack,
                   controller: noteTitleController,
+                  onChanged: (text) => {},
                   style: const TextStyle(
                       color: appBlack,
                       fontSize: 26,
@@ -130,7 +158,9 @@ class _CreateNoteState extends State<CreateNote> {
                     keyboardType: TextInputType.multiline,
                     scrollPhysics: const BouncingScrollPhysics(),
                     maxLines: 1000000,
+                    // to make it full height
                     controller: noteBodyController,
+                    onChanged: (text) => {},
                     textAlign: TextAlign.start,
                     cursorColor: appBlack,
                     style: const TextStyle(
