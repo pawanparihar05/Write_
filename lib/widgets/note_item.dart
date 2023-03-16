@@ -49,7 +49,7 @@ class NoteItem extends StatelessWidget {
                   fontFamily: "playfair"),
             ),
             Text(
-              "$numberOfPages Pages",
+              "$numberOfPages Page",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
