@@ -6,9 +6,10 @@ class NoteItem extends StatelessWidget {
   /// PARAMS
   final String date, title;
   final int numberOfPages;
+  String titleFinal = "New Note";
 
   /// CONSTRUCTOR
-  const NoteItem(
+  NoteItem(
       {Key? key,
       required this.date,
       required this.title,
@@ -17,6 +18,11 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //title empty check
+    if (title.isNotEmpty) {
+      titleFinal = title;
+    }
+
     return Card(
       color: cardBgWhite,
       shape: RoundedRectangleBorder(
@@ -38,7 +44,7 @@ class NoteItem extends StatelessWidget {
               ),
             ),
             Text(
-              title,
+              titleFinal,
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

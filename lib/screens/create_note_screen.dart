@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:write_it_down/SQLHelper.dart';
 import 'package:write_it_down/constants/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:write_it_down/constants/dimens.dart';
 
 class CreateNote extends StatefulWidget {
@@ -61,6 +62,18 @@ class _CreateNoteState extends State<CreateNote> {
       }
     }
 
+    /// DELETE NOTE IN DB
+    Future<void> deleteNote(int noteID) async {
+      await SQLHelper.deleteNoteByID(noteID);
+
+      // Future.delayed(
+      //   const Duration(seconds: 1),
+      //   () {
+      //     Navigator.pop(context);
+      //   },
+      // );
+    }
+
     /// ON BACK CLICK
     void goBack() {
       //if new note, add in db
@@ -74,6 +87,59 @@ class _CreateNoteState extends State<CreateNote> {
       Navigator.pop(context);
     }
 
+    /// SHOW DELETE CONFIRMATION DIALOG
+    void showConfirmationDialog() {
+      showCupertinoDialog(
+          context: context,
+          builder: (BuildContext ctx) {
+            return CupertinoAlertDialog(
+              title: const Text("Delete Note?"),
+              content: const Text("Are you sure want to delete this note?"),
+              actions: [
+                // The "Yes" button
+                CupertinoDialogAction(
+                  onPressed: () {
+                    setState(() {
+                      // _isShown = false;
+                      deleteNote(widget.noteID);
+                      //pop to first screen (dashboard)
+                      //because normal pop once will close dialog
+                      //and have to one more time to close screen
+                      Navigator.of(context).popUntil((route) => route.isFirst);
+                    });
+                  },
+                  isDefaultAction: true,
+                  isDestructiveAction: true,
+                  child: const Text('Yes'),
+                ),
+                // The "No" button
+                CupertinoDialogAction(
+                  onPressed: () {
+                    //close dialog
+                    Navigator.pop(context);
+                  },
+                  isDefaultAction: false,
+                  isDestructiveAction: false,
+                  child: Text('No'),
+                )
+              ],
+            );
+          });
+    }
+
+    /// ON DELETE CLICK
+    void deleteClick() {
+      if (noteTitleController.text.isEmpty && noteBodyController.text.isEmpty) {
+        //title and body both empty, don't delete just go back
+        Navigator.pop(context);
+      }
+      //only if either title or body is not empty
+      else {
+        showConfirmationDialog();
+      }
+    }
+
+    /// UI BUILDER
     return Scaffold(
       backgroundColor: appBlack,
 
@@ -97,17 +163,16 @@ class _CreateNoteState extends State<CreateNote> {
             ),
           ),
         ),
-        actions: const [
-          Center(
-            child: Padding(
-              padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
-              child: Text(
-                "Share",
-                style: TextStyle(
-                    color: hintGrey,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "SFUiDisplay"),
+        actions: [
+          GestureDetector(
+            onTap: deleteClick,
+            child: const Center(
+              child: Padding(
+                padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
+                child: Icon(
+                  Icons.delete_forever,
+                  color: Colors.redAccent,
+                ),
               ),
             ),
           ),
@@ -184,3 +249,34 @@ class _CreateNoteState extends State<CreateNote> {
     );
   }
 }
+
+// /// SHOW CONFIRMATION DIALOG
+// showAlertDialog(BuildContext context, String title, String message) {
+//   // set up the buttons
+//   Widget cancelButton = TextButton(
+//     child: const Text("Cancel"),
+//     onPressed: () {},
+//   );
+//   Widget continueButton = TextButton(
+//     child: const Text("Continue"),
+//     onPressed: () {},
+//   );
+//
+//   // set up the AlertDialog
+//   AlertDialog alert = AlertDialog(
+//     title: Text(title),
+//     content: Text(message),
+//     actions: [
+//       cancelButton,
+//       continueButton,
+//     ],
+//   );
+//
+//   // show the dialog
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return alert;
+//     },
+//   );
+// }

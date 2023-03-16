@@ -1,5 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:write_it_down/SQLHelper.dart';
+import 'package:write_it_down/Utils.dart';
 import 'package:write_it_down/constants/colors.dart';
+import 'package:write_it_down/constants/dbConstants.dart';
 import 'package:write_it_down/constants/dimens.dart';
 import 'package:write_it_down/screens/read_note_screen.dart';
 import 'package:write_it_down/widgets/note_item.dart';
@@ -13,44 +18,36 @@ class ReaderModePage extends StatefulWidget {
 
 /// CONSTRUCTOR
 class _ReaderModePageState extends State<ReaderModePage> {
-  final List notesList = [
-    const NoteItem(
-        date: "02 April, 2019",
-        title: "Song for the Old Ones",
-        numberOfPages: 4),
-    const NoteItem(
-        date: "02 October, 2017", title: "Phenomenal Woman", numberOfPages: 6),
-    const NoteItem(
-        date: "19 March, 2019", title: "Awaking in New York", numberOfPages: 1),
-    const NoteItem(
-        date: "03 August, 2018",
-        title: "The Heart of a Woman ",
-        numberOfPages: 3),
-    const NoteItem(
-        date: "21 June, 2017",
-        title: "The Mothering Blackness",
-        numberOfPages: 1),
-    const NoteItem(
-        date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
-    const NoteItem(
-        date: "02 April, 2019",
-        title: "Song for the Old Ones",
-        numberOfPages: 4),
-    const NoteItem(
-        date: "02 October, 2017", title: "Phenomenal Woman", numberOfPages: 6),
-    const NoteItem(
-        date: "19 March, 2019", title: "Awaking in New York", numberOfPages: 1),
-    const NoteItem(
-        date: "03 August, 2018",
-        title: "The Heart of a Woman ",
-        numberOfPages: 3),
-    const NoteItem(
-        date: "21 June, 2017",
-        title: "The Mothering Blackness",
-        numberOfPages: 1),
-    const NoteItem(
-        date: "12 June, 2017", title: "Mom & Me & Mom", numberOfPages: 2),
-  ];
+  List<Map<String, dynamic>> fetchedNotesList = [];
+  /// APP INIT STATE (onCreate)
+  @override
+  void initState() {
+    super.initState();
+    //fetch notes from db
+    fetchNotes();
+  }
+
+  /// ON COMING BACK TO PAGE (onResume)
+  FutureOr onComingBack(dynamic value) {
+    //refresh data
+    fetchNotes();
+    //set state
+    setState(() {});
+  }
+
+  /// NAVIGATES TO GIVEN ROUTE AND HANDLES onResume for the screen
+  void navigateWithResumeHandle(Route route) {
+    // go to create note screen, handle on coming back as well
+    Navigator.push(context, route).then(onComingBack);
+  }
+
+  /// FETCH ALL NOTES FROM DB
+  fetchNotes() async {
+    final data = await SQLHelper.getAllNotes();
+    setState(() {
+      fetchedNotesList = data;
+    });
+  }
 
   /// ON GRID ITEM CLICKED
   void onItemClicked() {
@@ -100,17 +97,30 @@ class _ReaderModePageState extends State<ReaderModePage> {
                 child: GridView.builder(
                   physics: const BouncingScrollPhysics(),
                   primary: false,
-                  itemCount: notesList.length,
+                  itemCount: fetchedNotesList.length,
+                  // to make room for AddNote()
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
+                    crossAxisCount: 2,
                     childAspectRatio: 0.9,
                   ),
                   itemBuilder: (BuildContext context, int index) {
+                    final Map<String, dynamic> correctedIndexNote =
+                    fetchedNotesList[index];
                     return GestureDetector(
-                      onTap: onItemClicked, // custom item click
-                      child: notesList[index], // item list
+                      // onTap: () {
+                      //   //edit note click
+                      //   handleEditNote(
+                      //       fetchedNotesList[fieldNoteID],
+                      //       fetchedNotesList[fieldNoteTitle],
+                      //       fetchedNotesList[fieldNoteBody]);
+                      // },
+                      child: NoteItem(
+                        date: Utils.convertTimeFormat(correctedIndexNote[fieldNoteCreatedAt]),
+                        title: correctedIndexNote[fieldNoteTitle],
+                        numberOfPages: 1,
+                      ),
                     );
                   },
                 ),
