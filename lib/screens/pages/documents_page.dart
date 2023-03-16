@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:write_it_down/SQLHelper.dart';
 import 'package:write_it_down/constants/colors.dart';
@@ -26,8 +28,22 @@ class _DocumentPageState extends State<DocumentPage> {
     fetchNotes();
   }
 
+  /// ON COMING BACK TO PAGE (onResume)
+  FutureOr onComingBack(dynamic value) {
+    //refresh data
+    fetchNotes();
+    //set state
+    setState(() {});
+  }
+
+  /// NAVIGATES TO GIVEN ROUTE AND HANDLES onResume for the screen
+  void navigateWithResumeHandle(Route route) {
+    // go to create note screen, handle on coming back as well
+    Navigator.push(context, route).then(onComingBack);
+  }
+
   /// FETCH ALL NOTES FROM DB
-  void fetchNotes() async {
+  fetchNotes() async {
     final data = await SQLHelper.getAllNotes();
     setState(() {
       fetchedNotesList = data;
@@ -36,34 +52,34 @@ class _DocumentPageState extends State<DocumentPage> {
 
   /// ADD NOTE CLICK
   void handleAddNote() {
-    // go to create note screen
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const CreateNote(
-          isNewNote: true,
-          title: "",
-          body: "",
-          noteID: 0,
-        ),
+    // route to create note screen
+    Route route = MaterialPageRoute(
+      builder: (context) => const CreateNote(
+        isNewNote: true,
+        title: "",
+        body: "",
+        noteID: 0,
       ),
     );
+
+    //navigate
+    navigateWithResumeHandle(route);
   }
 
   /// EDIT NOTE CLICK
   void handleEditNote(int noteID, String title, String body) {
-    //go to edit note with note item
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CreateNote(
-          isNewNote: false,
-          noteID: noteID,
-          title: title,
-          body: body,
-        ),
+    // route to edit note screen
+    Route route = MaterialPageRoute(
+      builder: (context) => CreateNote(
+        isNewNote: false,
+        noteID: noteID,
+        title: title,
+        body: body,
       ),
     );
+
+    //navigate
+    navigateWithResumeHandle(route);
   }
 
   /// UI BUILDER
