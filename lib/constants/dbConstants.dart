@@ -6,3 +6,5 @@ const String fieldNoteID = "id";
 const String fieldNoteTitle = "note_title";
 const String fieldNoteBody = "note_body";
 const String fieldNoteCreatedAt = "created_at";
+const String sortDESC = "DESC";
+const String sortASC = "ASC";

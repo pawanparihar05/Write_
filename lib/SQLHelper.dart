@@ -27,13 +27,14 @@ class SQLHelper {
   /// FETCH ALL NOTES
   static Future<List<Map<String, dynamic>>> getAllNotes() async {
     final db = await SQLHelper.db();
-    return db.query(tableNotes, orderBy: fieldNoteCreatedAt);
+    return db.query(tableNotes, orderBy: "$fieldNoteCreatedAt $sortDESC");
   }
 
   /// FETCH A SINGLE NOTE BY ID
   static Future<List<Map<String, dynamic>>> getNoteByID(int id) async {
     final db = await SQLHelper.db();
-    return db.query(tableNotes, where: "$fieldNoteID = ?", whereArgs: [id], limit: 1);
+    return db.query(tableNotes,
+        where: "$fieldNoteID = ?", whereArgs: [id], limit: 1);
   }
 
   /// CREATE NEW NOTE
@@ -60,11 +61,10 @@ class SQLHelper {
     final data = {
       fieldNoteTitle: noteTitle,
       fieldNoteBody: noteBody,
-      fieldNoteCreatedAt: DateTime.now().toString()
     };
 
-    final result =
-        await db.update(tableNotes, data, where: "$fieldNoteID = ?", whereArgs: [id]);
+    final result = await db
+        .update(tableNotes, data, where: "$fieldNoteID = ?", whereArgs: [id]);
     return result;
   }
 

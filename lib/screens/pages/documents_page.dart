@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:write_it_down/SQLHelper.dart';
+import 'package:write_it_down/Utils.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dbConstants.dart';
 import 'package:write_it_down/constants/dimens.dart';
@@ -145,7 +146,7 @@ class _DocumentPageState extends State<DocumentPage> {
                             correctedIndexNote[fieldNoteBody]);
                       },
                       child: NoteItem(
-                        date: correctedIndexNote[fieldNoteCreatedAt],
+                        date: Utils.convertTimeFormat(correctedIndexNote[fieldNoteCreatedAt]),
                         title: correctedIndexNote[fieldNoteTitle],
                         numberOfPages: 1,
                       ),
