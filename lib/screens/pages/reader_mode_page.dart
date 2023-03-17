@@ -80,25 +80,25 @@ class _ReaderModePageState extends State<ReaderModePage> {
           child: Column(
             children: [
               /// SEARCH FIELD
-              TextField(
-                textAlign: TextAlign.center,
-                cursorColor: Colors.white,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'SfUiDisplay',
-                    fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: cardGrey,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(borderRadius)),
-                    hintText: "Search",
-                    hintStyle: const TextStyle(color: hintGrey)),
-              ),
+              // TextField(
+              //   textAlign: TextAlign.center,
+              //   cursorColor: Colors.white,
+              //   style: const TextStyle(
+              //       color: Colors.white,
+              //       fontFamily: 'SfUiDisplay',
+              //       fontWeight: FontWeight.bold),
+              //   decoration: InputDecoration(
+              //       filled: true,
+              //       fillColor: cardGrey,
+              //       border: OutlineInputBorder(
+              //           borderSide: BorderSide.none,
+              //           borderRadius: BorderRadius.circular(borderRadius)),
+              //       hintText: "Search",
+              //       hintStyle: const TextStyle(color: hintGrey)),
+              // ),
+              // const SizedBox(height: 15),
 
               /// CARD GRID
-              const SizedBox(height: 15),
               Expanded(
                 child: GridView.builder(
                   physics: const BouncingScrollPhysics(),

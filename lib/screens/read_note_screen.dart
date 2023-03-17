@@ -44,15 +44,15 @@ class _ReadNoteState extends State<ReadNote> {
             color: detailTextGrey,
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
-            child: Icon(
-              Icons.ios_share_rounded,
-              color: detailTextGrey,
-            ),
-          ),
-        ],
+        // actions: const [
+        //   Padding(
+        //     padding: EdgeInsets.only(right: toolbarRightIconEndPadding),
+        //     child: Icon(
+        //       Icons.ios_share_rounded,
+        //       color: detailTextGrey,
+        //     ),
+        //   ),
+        // ],
         title: SvgPicture.asset('assets/svg/ic_logo_grey.svg'),
       ),
 
@@ -62,7 +62,7 @@ class _ReadNoteState extends State<ReadNote> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             Text(
               widget.title,
               textAlign: TextAlign.start,
