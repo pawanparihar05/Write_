@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:write_it_down/constants/colors.dart';
@@ -10,24 +9,24 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           /// APP VERSION
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.build_circle,
                 size: 30,
                 color: appGreen,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text(
                     "App version",
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -44,24 +43,24 @@ class SettingsPage extends StatelessWidget {
             ],
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
 
           /// DEVELOPER
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.account_circle_rounded,
                 size: 30,
                 color: appGreen,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text(
                     "Developed By",
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -78,24 +77,24 @@ class SettingsPage extends StatelessWidget {
             ],
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
 
           /// GITHUB
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.adb,
                 size: 30,
                 color: appGreen,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text(
                     "GitHub",
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -112,24 +111,24 @@ class SettingsPage extends StatelessWidget {
             ],
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
 
           /// EMAIL
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.email_rounded,
                 size: 30,
                 color: appGreen,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text(
                     "Contact Me",
                     style: TextStyle(color: Colors.white, fontSize: 16),

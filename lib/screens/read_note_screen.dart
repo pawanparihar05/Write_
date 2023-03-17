@@ -82,7 +82,7 @@ class _ReadNoteState extends State<ReadNote> {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                   color: detailTextGrey,
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   fontFamily: "playfair"),
             ),

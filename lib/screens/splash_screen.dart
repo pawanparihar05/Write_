@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // timer to hold splash for some time
     // and navigate to HomeScreen()
     Timer(
-        const Duration(seconds: 0),
+        const Duration(seconds: 1),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (BuildContext context) => const HomeScreen())));
 
