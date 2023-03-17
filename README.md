@@ -3,7 +3,6 @@ Simple notes taking cross platform app with minimalistic design.
 
 ## **Design**
 <a href="https://robertanitei.com/" style= "text-decoration: none;" target="_blank">👍 Robert Anitei</a>
-
 <br/>
 
 ## **Flutter Project #1**
