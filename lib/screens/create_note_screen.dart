@@ -25,7 +25,6 @@ class CreateNote extends StatefulWidget {
 }
 
 class _CreateNoteState extends State<CreateNote> {
-  /// UI BUILDER
   @override
   Widget build(BuildContext context) {
     /// TEXT CONTROLLERS
@@ -120,7 +119,7 @@ class _CreateNoteState extends State<CreateNote> {
                   },
                   isDefaultAction: false,
                   isDestructiveAction: false,
-                  child: Text('No'),
+                  child: const Text('No'),
                 )
               ],
             );
@@ -249,34 +248,3 @@ class _CreateNoteState extends State<CreateNote> {
     );
   }
 }
-
-// /// SHOW CONFIRMATION DIALOG
-// showAlertDialog(BuildContext context, String title, String message) {
-//   // set up the buttons
-//   Widget cancelButton = TextButton(
-//     child: const Text("Cancel"),
-//     onPressed: () {},
-//   );
-//   Widget continueButton = TextButton(
-//     child: const Text("Continue"),
-//     onPressed: () {},
-//   );
-//
-//   // set up the AlertDialog
-//   AlertDialog alert = AlertDialog(
-//     title: Text(title),
-//     content: Text(message),
-//     actions: [
-//       cancelButton,
-//       continueButton,
-//     ],
-//   );
-//
-//   // show the dialog
-//   showDialog(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return alert;
-//     },
-//   );
-// }

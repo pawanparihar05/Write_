@@ -19,6 +19,7 @@ class ReaderModePage extends StatefulWidget {
 /// CONSTRUCTOR
 class _ReaderModePageState extends State<ReaderModePage> {
   List<Map<String, dynamic>> fetchedNotesList = [];
+
   /// APP INIT STATE (onCreate)
   @override
   void initState() {
@@ -49,14 +50,19 @@ class _ReaderModePageState extends State<ReaderModePage> {
     });
   }
 
-  /// ON GRID ITEM CLICKED
-  void onItemClicked() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ReadNote(),
+  /// OPEN NOTE CLICK
+  void goToNoteReaderMode(String title, String body, String createdAt) {
+    // route to create note screen
+    Route route = MaterialPageRoute(
+      builder: (context) => ReadNote(
+        title: title,
+        body: body,
+        createdAt: createdAt,
       ),
     );
+
+    //navigate
+    navigateWithResumeHandle(route);
 
     // THIS IS TO POP ALL AND GO TO NEW DESTINATION
     // LEFT HERE FOR REF
@@ -106,19 +112,22 @@ class _ReaderModePageState extends State<ReaderModePage> {
                     childAspectRatio: 0.9,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    final Map<String, dynamic> correctedIndexNote =
-                    fetchedNotesList[index];
+                    final Map<String, dynamic> notesList =
+                        fetchedNotesList[index];
                     return GestureDetector(
-                      // onTap: () {
-                      //   //edit note click
-                      //   handleEditNote(
-                      //       fetchedNotesList[fieldNoteID],
-                      //       fetchedNotesList[fieldNoteTitle],
-                      //       fetchedNotesList[fieldNoteBody]);
-                      // },
+                      onTap: () {
+                        //edit note click
+                        goToNoteReaderMode(
+                          notesList[fieldNoteTitle],
+                          notesList[fieldNoteBody],
+                          Utils.convertTimeFormat(
+                              notesList[fieldNoteCreatedAt]),
+                        );
+                      },
                       child: NoteItem(
-                        date: Utils.convertTimeFormat(correctedIndexNote[fieldNoteCreatedAt]),
-                        title: correctedIndexNote[fieldNoteTitle],
+                        date: Utils.convertTimeFormat(
+                            notesList[fieldNoteCreatedAt]),
+                        title: notesList[fieldNoteTitle],
                         numberOfPages: 1,
                       ),
                     );

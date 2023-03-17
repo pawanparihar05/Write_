@@ -2,23 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:write_it_down/constants/colors.dart';
 import 'package:write_it_down/constants/dimens.dart';
-import 'package:write_it_down/constants/strings.dart';
 
 class ReadNote extends StatefulWidget {
-  const ReadNote({Key? key}) : super(key: key);
+  /// PARAMS
+  final String title, body, createdAt;
+
+  /// CONSTRUCTOR
+  const ReadNote(
+      {Key? key,
+      required this.title,
+      required this.body,
+      required this.createdAt})
+      : super(key: key);
 
   @override
   State<ReadNote> createState() => _ReadNoteState();
 }
 
 class _ReadNoteState extends State<ReadNote> {
-  /// ON BACK CLICK
-  void goBack() {
-    Navigator.pop(context);
-  }
-
   @override
   Widget build(BuildContext context) {
+    // /// TEXT CONTROLLERS
+    // final TextEditingController noteTitleController = TextEditingController();
+    // final TextEditingController noteBodyController = TextEditingController();
+    //
+    // // populate fields if edit note
+    // noteTitleController.text = widget.title;
+    // noteBodyController.text = widget.body;
+
+    /// ON BACK CLICK
+    void goBack() {
+      Navigator.pop(context);
+    }
+
+    /// UI BUILDER
     return Scaffold(
       /// APP BAR
       appBar: AppBar(
@@ -53,29 +70,29 @@ class _ReadNoteState extends State<ReadNote> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 10),
-            const Text(
-              "Song for the Old Ones",
+            Text(
+              widget.title,
               textAlign: TextAlign.start,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: const TextStyle(
                   color: appBlack,
                   fontSize: 26,
                   fontWeight: FontWeight.w700,
                   fontFamily: "playfair"),
             ),
             const SizedBox(height: 5),
-            // const Text(
-            //   "by Maya Angelou",
-            //   maxLines: 1,
-            //   textAlign: TextAlign.start,
-            //   overflow: TextOverflow.ellipsis,
-            //   style: TextStyle(
-            //       color: appBlack,
-            //       fontSize: 18,
-            //       fontWeight: FontWeight.w400,
-            //       fontFamily: "playfair"),
-            // ),
+            Text(
+              widget.createdAt,
+              maxLines: 1,
+              textAlign: TextAlign.start,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                  color: detailTextGrey,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "playfair"),
+            ),
             const SizedBox(height: 10),
             Expanded(
               flex: 1,
@@ -107,13 +124,13 @@ class _ReadNoteState extends State<ReadNote> {
                 blendMode: BlendMode.dstOut,
 
                 /// SCROLL VIEW WITH TEXT
-                child: const SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical, //.horizontal
                   child: Text(
-                    testString,
+                    widget.body,
                     textAlign: TextAlign.start,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: appBlack,
                         fontSize: 19,
                         fontWeight: FontWeight.w400,
