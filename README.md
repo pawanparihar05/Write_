@@ -1,11 +1,11 @@
 # **Write_**
 Simple notes taking cross platform app with minimalistic design.
-
-## **Design**
-<a href="https://robertanitei.com/" style= "text-decoration: none;" target="_blank">👍 Robert Anitei</a>
 <br/>
 
-## **Flutter Project #1**
+### **Design**
+<a href="https://robertanitei.com/" style= "text-decoration: none;" target="_blank">👍 Robert Anitei</a>
+
+### **Flutter Project #1**
 I made this project while learning flutter
 I hope you like it as much i liked working on it
 <br/>
