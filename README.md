@@ -2,7 +2,8 @@
 Simple notes taking cross platform app with minimalistic design.
 
 ## **Design**
-👍 Robert Anitei (https://robertanitei.com/) 
+<a href="https://robertanitei.com/" style= "text-decoration: none;" target="_blank">👍 Robert Anitei</a>
+
 <br/>
 
 ## **Flutter Project #1**
@@ -32,4 +33,4 @@ I hope you like it as much i liked working on it
 <br/>
 
 ### Find this project useful ? ❤️
-* Support it by clicking the :star: button on the upper right of this page. :v:
+* Support it by clicking the ⭐ button on the upper right of this page. ✌️
