@@ -65,18 +65,18 @@ class BottomNav extends StatelessWidget {
             activeIcon: Padding(
               padding: EdgeInsets.all(bottomNavItemPadding),
               child: Icon(
-                Icons.settings_rounded,
+                Icons.info_rounded,
                 color: appGreen,
               ),
             ),
             icon: Padding(
               padding: EdgeInsets.all(bottomNavItemPadding),
               child: Icon(
-                Icons.settings_rounded,
+                Icons.info,
                 color: disabledGrey,
               ),
             ),
-            label: settings),
+            label: appInfo),
       ],
     );
   }
