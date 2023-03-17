@@ -22,13 +22,6 @@ class ReadNote extends StatefulWidget {
 class _ReadNoteState extends State<ReadNote> {
   @override
   Widget build(BuildContext context) {
-    // /// TEXT CONTROLLERS
-    // final TextEditingController noteTitleController = TextEditingController();
-    // final TextEditingController noteBodyController = TextEditingController();
-    //
-    // // populate fields if edit note
-    // noteTitleController.text = widget.title;
-    // noteBodyController.text = widget.body;
 
     /// ON BACK CLICK
     void goBack() {
