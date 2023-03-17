@@ -1,16 +1,32 @@
-# write_it_down
+# **Write_**
+Notes taking cross platform application built using flutter
+<br/>
 
-A new Flutter project.
+## **Flutter Project #1**
+I made this project while learning flutter
+I hope you like it as much i liked working on it
+<br/>
 
-## Getting Started
+### **Dependencies Used**
+*SQFLite* <br/>
+*Cupertino Icons* <br/>
+*Flutter SVG* <br/>
+*Flutter Native Splash* <br/>
+<br/>
 
-This project is a starting point for a Flutter application.
+#### Spread Some :heart:
 
-A few resources to get you started if this is your first Flutter project:
+[![GitHub stars](https://img.shields.io/github/stars/pawanparihar05/Android-Studio-Plugins-Tricks.svg?style=social&label=Star)](https://github.com/pawanparihar05/Android-Studio-Plugins-Tricks) [![GitHub forks](https://img.shields.io/github/forks/pawanparihar05/Android-Studio-Plugins-Tricks.svg?style=social&label=Fork)](https://github.com/pawanparihar05/Android-Studio-Plugins-Tricks/fork) [![GitHub watchers](https://img.shields.io/github/watchers/pawanparihar05/Android-Studio-Plugins-Tricks.svg?style=social&label=Watch)](https://github.com/pawanparihar05/Android-Studio-Plugins-Tricks)[![GitHub followers](https://img.shields.io/github/followers/pawanparihar05.svg?style=social&label=Follow)](https://github.com/pawanparihar05)
+<br/>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### **Screenshots**
+<img src="screenshots/splash_page.png" width="360" height="747">&nbsp;
+&nbsp;<img src="screenshots/notes_page.png" width="360" height="747">&nbsp;
+&nbsp;<img src="screenshots/create_note_page.png" width="360" height="747">&nbsp;
+&nbsp;<img src="screenshots/read_mode_list_page.png" width="360" height="747">&nbsp;
+&nbsp;<img src="screenshots/reader_page.png" width="360" height="747">&nbsp;
+&nbsp;<img src="screenshots/app_info_page.png" width="360" height="747">&nbsp;
+<br/>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Find this project useful ? :heart:
+* Support it by clicking the :star: button on the upper right of this page. :v:
