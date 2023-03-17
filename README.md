@@ -10,6 +10,9 @@ I made this project while learning flutter
 I hope you like it as much i liked working on it
 <br/>
 
+### **Demo APK**
+⏬ [Write - Notes App Demo APK](demo/write_app_demo.apk)
+
 ### **Dependencies Used**
 *SQFLite* <br/>
 *Cupertino Icons* <br/>
